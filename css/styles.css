@@ -1,0 +1,260 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background: black;
+  cursor: default;
+  user-select: none;
+}
+
+.blackout {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: black;
+  transform: translateX(0);
+  transition: transform 0.5s ease-out;
+  z-index: 2;
+}
+
+.blackout.transformed {
+  transform: translateY(-100%);
+  transition: transform 1s ease-out;
+}
+
+.blackout.left {
+  transform: translateX(-100%);
+}
+
+.blackout.right {
+  transform: translateX(100%);
+}
+
+.blackout.active {
+  transform: translateY(0);
+}
+
+/* Main menu styles */
+.heading {
+  margin: 0;
+  line-height: 0;
+  font-size: 10em;
+  color: white;
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  position: absolute;
+  top: 10%;
+  height: 80%;
+  width: 5em;
+  padding-left: 14em;
+  display: flex;
+  align-items: left;
+  justify-content: space-around;
+  flex-direction: column;
+  transform: perspective(500px) rotateY(12deg);
+}
+
+.select {
+  min-width: 500px;
+  height: 170px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.select > h1 {
+  font-size: 3em;
+  color: white;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  transform: translateX(0);
+  transition: transform 0.1s ease-out;
+  cursor: pointer;
+}
+
+.select > h1:hover {
+  transform: translateX(12px);
+}
+
+.preview-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+#preview {
+  display: none;
+  width: fit-content;
+  height: 90px;
+  clip-path: inset(0);
+  z-index: 5;
+}
+
+.preview {
+  margin: 0;
+  line-height: 60px;
+  font-size: 64pt;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  transform: translateY(200%);
+  animation: text-enter-exit 10s ease both;
+}
+
+#preview::after {
+  content: "";
+  display: block;
+  position: relative;
+  width: 0;
+  height: 10px;
+  left: 50%;
+  top: 20px;
+  background: white;
+}
+
+#preview.active {
+  display: block;
+}
+
+#preview.active::after {
+  width: 100%;
+  left: 0;
+  animation: in-out 9s ease both 1s;
+}
+
+#preview.active > .preview {
+  transform: translateY(200%);
+}
+
+@keyframes in-out {
+  from {
+    width: 0;
+    left: 50%;
+  }
+  25% {
+    width: 100%;
+    left: 0;
+  }
+  75% {
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    width: 0;
+    left: 50%;
+  }
+}
+
+@keyframes text-enter-exit {
+  from {
+    transform: translateY(200%);
+  }
+  25% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+/* Loading and waiting indicators */
+#loading {
+  position: absolute;
+  z-index: 5;
+  bottom: 50px;
+  right: 50px;
+  animation: cycle-rotate 1s infinite;
+  transform: rotate(0);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#loading.active {
+  opacity: 1;
+}
+
+#waiting {
+  position: absolute;
+  z-index: 5;
+  bottom: 55px;
+  right: 175px;
+  font-size: 16pt;
+  color: white;
+  font-family: "Roboto", sans-serif;
+}
+
+#waiting:not(.active) {
+  opacity: 0 !important;
+}
+
+#waiting.active {
+  animation: cycle-opacity 3s infinite;
+}
+
+@keyframes cycle-rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cycle-opacity {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#ui {
+  position: absolute;
+  pointer-events: none;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+}
+
+#ammo {
+  position: absolute;
+  z-index: 1;
+  bottom: 55px;
+  right: 55px;
+  font-size: 32pt;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  line-height: 0;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.bullet {
+  position: absolute;
+  right: 60px;
+  bottom: -16px;
+  height: 32px;
+}
+
+#ammo.active {
+  opacity: 1;
+}
+
+/* Flight ended styles */
+svg {
+  position: absolute;
+  width: 100vw !important;
+  height: 100vh !important;
+}
