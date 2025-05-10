@@ -4,6 +4,8 @@ body {
   background: black;
   cursor: default;
   user-select: none;
+  color: white;
+  font-family: 'Roboto', sans-serif;
 }
 
 .blackout {
@@ -38,8 +40,6 @@ body {
   margin: 0;
   line-height: 0;
   font-size: 10em;
-  color: white;
-  font-family: "Roboto", sans-serif;
 }
 
 .container {
@@ -65,9 +65,7 @@ body {
 
 .select > h1 {
   font-size: 3em;
-  color: white;
   margin: 0;
-  font-family: "Roboto", sans-serif;
   transform: translateX(0);
   transition: transform 0.1s ease-out;
   cursor: pointer;
@@ -99,14 +97,12 @@ body {
   margin: 0;
   line-height: 60px;
   font-size: 64pt;
-  color: white;
-  font-family: "Roboto", sans-serif;
   transform: translateY(200%);
   animation: text-enter-exit 10s ease both;
 }
 
 #preview::after {
-  content: "";
+  content: '';
   display: block;
   position: relative;
   width: 0;
@@ -186,8 +182,6 @@ body {
   bottom: 55px;
   right: 175px;
   font-size: 16pt;
-  color: white;
-  font-family: "Roboto", sans-serif;
 }
 
 #waiting:not(.active) {
@@ -229,27 +223,21 @@ body {
 
 #ammo {
   position: absolute;
-  z-index: 1;
-  bottom: 55px;
-  right: 55px;
+  bottom: 40px;
+  right: 40px;
   font-size: 32pt;
-  color: white;
-  font-family: "Roboto", sans-serif;
-  line-height: 0;
   margin: 0;
   opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.bullet {
-  position: absolute;
-  right: 60px;
-  bottom: -16px;
-  height: 32px;
 }
 
 #ammo.active {
   opacity: 1;
+}
+
+.bullet {
+  display: inline-block;
+  margin-right: 10px;
+  height: 32px;
 }
 
 /* Flight ended styles */
